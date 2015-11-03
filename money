@@ -1,0 +1,26 @@
+#include "money.h"
+#include <iostream>
+
+Money::Money(int accountNumber, string name, double lowBalanceFee, double minimumBalance, double interestRate, double balance) :
+	Account(accountNumber, name) {}
+void Money::processInterest() {
+	if (balance < minimumBalance)
+	{
+		balance = balance - lowBalanceFee;
+	}
+
+	if (balance >= minimumBalance)
+	{
+		setBalance(getBalance()*(1 + (interestRate / 100)));
+		balance = getBalance();
+		balance += interestRate;
+	}
+
+}
+	string Money::getType() {
+		return "Money";
+	}
+
+	void Money::printDetails() {
+		cout << "balance: " << balance << endl;
+	}
